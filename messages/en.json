@@ -1,0 +1,55 @@
+{
+  "Header": {
+    "home": "Home",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "Hero": {
+    "title": "Electrician & Low-Voltage Specialist",
+    "subtitle": "Turnkey electrical installation. From sockets to panels.",
+    "cta": "Contact me"
+  },
+  "Services": {
+    "title": "What I Do",
+    "items": [
+      {
+        "title": "Turnkey Electrical Work",
+        "description": "Full cycle: design to handover. Sockets, switches, lighting, panels."
+      },
+      {
+        "title": "Low-Voltage Systems",
+        "description": "Installation of internet, CCTV, intercoms, alarms."
+      },
+      {
+        "title": "Rewiring",
+        "description": "Replace old aluminum wiring with copper."
+      },
+      {
+        "title": "Electrical Panel Assembly",
+        "description": "Assembly, labeling, connection. Circuit breakers, RCDs, etc."
+      },
+      {
+        "title": "Diagnostics & Repair",
+        "description": "Find faults, replace outlets, restore contacts."
+      },
+      {
+        "title": "Free Consultation & Estimate",
+        "description": "On-site visit, material calculation, cost estimate."
+      }
+    ]
+  },
+  "Contact": {
+    "title": "Have questions?",
+    "description": "Message me on WhatsApp, Telegram, call or follow on Instagram. Work according to GOST, contract, and 2-year warranty.",
+    "whatsapp": "Write on WhatsApp",
+    "telegram": "Write on Telegram",
+    "instagram": "Follow on Instagram",
+    "call": "Call",
+    "phone": "+375 29 123-45-67",
+    "instagramUrl": "https://www.instagram.com/zeus.belelectric"
+  },
+  "Footer": {
+    "rights": "Electrician & Low-Voltage. Turnkey installation.",
+    "social": "@zeus.belelectric"
+  }
+}
