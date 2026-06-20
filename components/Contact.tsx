@@ -7,6 +7,7 @@ import { FaWhatsapp, FaTelegram, FaInstagram, FaPhoneAlt } from 'react-icons/fa'
 export default function Contact() {
   const t = useTranslations('Contact');
   const phone = t('phone');
+  const phone2 = t('phone2');
   const instagramUrl = t('instagramUrl');
 
   return (
@@ -28,7 +29,7 @@ export default function Contact() {
           
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             <a
-              href={`https://wa.me/${phone.replace(/[^0-9+]/g, '')}`}
+              href={`https://wa.me/${phone2.replace(/[^0-9+]/g, '')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition"
@@ -55,7 +56,7 @@ export default function Contact() {
               {t('instagram')}
             </a>
             <a
-              href={`tel:${phone}`}
+              href={`tel:${phone2}`}
               className="inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-slate-900 font-semibold py-3 px-6 rounded-full shadow-lg transition"
             >
               <FaPhoneAlt size={20} />
@@ -66,7 +67,12 @@ export default function Contact() {
           <p className="text-gray-400 text-sm">
             📞 {phone}
           </p>
+
+          <p className="text-gray-400 text-sm">
+            📞 {phone2}
+          </p>
         </motion.div>
+
       </div>
     </section>
   );

@@ -7,6 +7,7 @@
   "Hero": {
     "title": "Electrician & Low-Voltage Specialist",
     "subtitle": "Turnkey electrical installation. From sockets to panels.",
+    "location": "We work in Vitebsk and the Vitebsk region.",
     "cta": "Contact me"
   },
   "Services": {
@@ -30,7 +31,7 @@
       },
       {
         "title": "Diagnostics & Repair",
-        "description": "Find faults, replace outlets, restore contacts."
+        "description": "Troubleshooting, circuit breaker and socket replacement, and contact restoration. We'll arrive for diagnostics within 1-2 hours."
       },
       {
         "title": "Free Consultation & Estimate",
@@ -45,7 +46,8 @@
     "telegram": "Write on Telegram",
     "instagram": "Follow on Instagram",
     "call": "Call",
-    "phone": "+375 29 123-45-67",
+    "phone": "+375 33 633-84-81",
+    "phone2": "+375 33 677-34-11",
     "instagramUrl": "https://www.instagram.com/zeus.belelectric"
   },
   "Footer": {
