@@ -6,19 +6,20 @@ export const locales = ['ru', 'en'] as const;
 export const defaultLocale = 'ru';
 export type Locale = typeof locales[number];
 
-const messagesMap: Record<Locale, typeof ruMessages> = {
+// Убираем явное указание Record<...> – TypeScript сам выведет правильный тип
+const messagesMap = {
   ru: ruMessages,
   en: enMessages,
-};
+} as const;
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;
-  const locale = requested && locales.includes(requested as Locale) 
-    ? requested as Locale 
+  const locale = requested && locales.includes(requested as Locale)
+    ? requested as Locale
     : defaultLocale;
-  
+
   return {
     locale,
-    messages: messagesMap[locale]
+    messages: messagesMap[locale],
   };
 });
