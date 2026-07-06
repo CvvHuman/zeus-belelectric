@@ -2,13 +2,14 @@
   "Header": {
     "home": "Home",
     "services": "Services",
-    "contact": "Contact"
+    "contact": "Contact",
+    "callbackButton": "Request a call"
   },
   "Hero": {
     "title": "Electrician & Low-Voltage Specialist",
     "subtitle": "Turnkey electrical installation. From sockets to panels.",
     "location": "We work in Vitebsk and the Vitebsk region.",
-    "cta": "Contact me"
+    "callbackButton": "Request a call"
   },
   "Services": {
     "title": "What I Do",
@@ -53,5 +54,20 @@
   "Footer": {
     "rights": "Electrician & Low-Voltage. Turnkey installation.",
     "social": "@zeus.belelectric"
-  }
+  },
+"Callback": {
+  "title": "Request a call",
+  "nameLabel": "Your name *",
+  "patronymicLabel": "Patronymic",
+  "phoneLabel": "Phone number *",
+  "phonePlaceholder": "+375 (33) 123-45-67",
+  "phoneHint": "Enter only digits. For Belarus start with 375 – format will be applied automatically.",
+  "submitButton": "Submit request",
+  "sending": "Sending...",
+  "successMessage": "✅ Request sent!",
+  "successDesc": "We will contact you shortly.",
+  "errorMessage": "❌ Submission error. Please try again later.",
+  "validationAlert": "Please fill in your name and phone number",
+  "validationPhone": "Please enter a valid phone number (at least 9 digits)"
+}
 }
