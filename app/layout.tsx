@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import YandexMetrika from '@/components/YandexMetrika'; 
+import YandexMetrika from '../components/YandexMetrika';
 
 const inter = Inter({ subsets: ['latin'] });
 
