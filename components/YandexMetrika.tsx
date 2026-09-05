@@ -1,33 +1,40 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import Script from 'next/script'; 
+import Script from 'next/script';
 
-// Расширяем глобальный интерфейс Window, чтобы TypeScript знал про метод .ym
+// Расширяем глобальный интерфейс Window
 declare global {
   interface Window {
     ym?: (id: number, method: string, ...args: unknown[]) => void;
   }
 }
 
-export default function YandexMetrika() {
+// Внутренний компонент, который безопасно использует динамические хуки навигации
+function MetrikaTracking() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // Корректно формируем строку параметров, добавляя "?" только если параметры есть
       const queryString = searchParams.toString();
       const url = pathname + (queryString ? `?${queryString}` : '');
       
-      // Безопасный вызов через опциональную цепочку ?.
       window.ym?.(112113946, 'hit', url);
     }
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+// Основной экспортируемый компонент, обёрнутый в Suspense для предотвращения ошибок сборки
+export default function YandexMetrika() {
   return (
     <>
+      <Suspense fallback={null}>
+        <MetrikaTracking />
+      </Suspense>
       <Script id="yandex-metrika" strategy="afterInteractive">
         {`
           (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
