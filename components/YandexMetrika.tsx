@@ -11,24 +11,29 @@ declare global {
   }
 }
 
-// Внутренний компонент, который безопасно использует динамические хуки навигации
+// Компонент отслеживания переходов
 function MetrikaTracking() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const queryString = searchParams.toString();
-      const url = pathname + (queryString ? `?${queryString}` : '');
-      
-      window.ym?.(112113946, 'hit', url);
-    }
+    // Небольшая задержка, чтобы Next.js успел полностью обновить DOM перед отправкой хита
+    const handleHit = () => {
+      if (typeof window !== 'undefined' && window.ym) {
+        const queryString = searchParams.toString();
+        const url = pathname + (queryString ? `?${queryString}` : '');
+        window.ym(112113946, 'hit', url);
+      }
+    };
+
+    // Используем requestAnimationFrame или таймер, чтобы дать DOM обновиться
+    const timer = setTimeout(handleHit, 100);
+    return () => clearTimeout(timer);
   }, [pathname, searchParams]);
 
   return null;
 }
 
-// Основной экспортируемый компонент, обёрнутый в Suspense для предотвращения ошибок сборки
 export default function YandexMetrika() {
   return (
     <>
