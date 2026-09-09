@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import YandexMetrika from '../components/YandexMetrika';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +18,6 @@ export default function RootLayout({
     <html lang="ru">
       <body className={inter.className}>
         {children}
-        <YandexMetrika />
       </body>
     </html>
   );
