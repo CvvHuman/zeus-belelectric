@@ -6,17 +6,14 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import YandexMetrika from '../../components/YandexMetrika';
 
-
 export default async function LocaleLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>; // params - это Promise
+  params: Promise<{ locale: string }>;
 }) {
-
   const { locale } = await params;
-
 
   if (!locales.includes(locale as typeof locales[number])) {
     notFound();
@@ -34,5 +31,4 @@ export default async function LocaleLayout({
       <YandexMetrika />
     </NextIntlClientProvider>
   );
-}
 }
