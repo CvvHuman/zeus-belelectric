@@ -1,41 +1,10 @@
 'use client';
 
-import { useEffect, Suspense } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
-
-declare global {
-  interface Window {
-    ym?: (id: number, method: string, ...args: unknown[]) => void;
-  }
-}
-
-function MetrikaTracking() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const handleHit = () => {
-      if (typeof window !== 'undefined' && window.ym) {
-        const queryString = searchParams.toString();
-        const url = pathname + (queryString ? `?${queryString}` : '');
-        window.ym(112113946, 'hit', url);
-      }
-    };
-
-    const timer = setTimeout(handleHit, 200);
-    return () => clearTimeout(timer);
-  }, [pathname, searchParams]);
-
-  return null;
-}
 
 export default function YandexMetrika() {
   return (
     <>
-      <Suspense fallback={null}>
-        <MetrikaTracking />
-      </Suspense>
       <Script id="yandex-metrika" strategy="afterInteractive">
         {`
           (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -45,7 +14,6 @@ export default function YandexMetrika() {
           (window, document, "script", "https://yandex.ru", "ym");
 
           ym(112113946, "init", {
-               defer: true,
                clickmap:true,
                trackLinks:true,
                accurateTrackBounce:true,
@@ -53,6 +21,15 @@ export default function YandexMetrika() {
           });
         `}
       </Script>
+      <noscript>
+        <div>
+          <img 
+            src="https://yandex.ru" 
+            style={{ position: 'absolute', left: '-9999px' }} 
+            alt="" 
+          />
+        </div>
+      </noscript>
     </>
   );
 }
