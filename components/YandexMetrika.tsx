@@ -5,13 +5,18 @@ import Script from 'next/script';
 export default function YandexMetrika() {
   return (
     <>
-      <Script id="yandex-metrika" strategy="afterInteractive">
+      {/* 1. Загружаем сам файл тега напрямую через src */}
+      <Script
+        src="https://yandex.ru"
+        strategy="afterInteractive"
+      />
+      {/* 2. Инициализируем счетчик сразу после загрузки тега */}
+      <Script id="yandex-metrika-init" strategy="afterInteractive">
         {`
-          (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-          m[i].l=1*new Date();
-          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-          k=e.createElement(t),a=e.getElementsByTagName(t),k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-          (window, document, "script", "https://yandex.ru", "ym");
+          window.ym = window.ym || function() {
+            (window.ym.a = window.ym.a || []).push(arguments)
+          };
+          window.ym.l = 1 * new Date();
 
           ym(112113946, "init", {
                clickmap:true,
@@ -21,15 +26,6 @@ export default function YandexMetrika() {
           });
         `}
       </Script>
-      <noscript>
-        <div>
-          <img 
-            src="https://yandex.ru" 
-            style={{ position: 'absolute', left: '-9999px' }} 
-            alt="" 
-          />
-        </div>
-      </noscript>
     </>
   );
 }
