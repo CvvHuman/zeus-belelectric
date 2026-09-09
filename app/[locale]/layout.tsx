@@ -1,58 +1,38 @@
-'use client';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { locales } from '../../i18n';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import YandexMetrika from '@/components/YandexMetrika'
 
-import { useEffect, Suspense } from 'react';
-import { usePathname, useSearchParams } from 'next/navigation';
-import Script from 'next/script';
 
-declare global {
-  interface Window {
-    ym?: (id: number, method: string, ...args: unknown[]) => void;
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>; // params - это Promise
+}) {
+
+  const { locale } = await params;
+
+
+  if (!locales.includes(locale as typeof locales[number])) {
+    notFound();
   }
-}
 
-function MetrikaTracking() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const messages = await getMessages();
 
-  useEffect(() => {
-    const handleHit = () => {
-      if (typeof window !== 'undefined' && window.ym) {
-        const queryString = searchParams.toString();
-        const url = pathname + (queryString ? `?${queryString}` : '');
-        window.ym(112113946, 'hit', url);
-      }
-    };
-
-    const timer = setTimeout(handleHit, 200); 
-    return () => clearTimeout(timer);
-  }, [pathname, searchParams]);
-
-  return null;
-}
-
-export default function YandexMetrika() {
   return (
-    <>
-      <Suspense fallback={null}>
-        <MetrikaTracking />
-      </Suspense>
-      <Script id="yandex-metrika" strategy="afterInteractive">
-        {`
-          (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-          m[i].l=1*new Date();
-          for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-          k=e.createElement(t),a=e.getElementsByTagName(t),k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-          (window, document, "script", "https://yandex.ru", "ym");
-
-          ym(112113946, "init", {
-               defer: true, 
-               clickmap:true,
-               trackLinks:true,
-               accurateTrackBounce:true,
-               webvisor:true
-          });
-        `}
-      </Script>
-    </>
+    <NextIntlClientProvider messages={messages}>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </div>
+      <YandexMetrika />
+    </NextIntlClientProvider>
   );
+}
 }
