@@ -4,14 +4,12 @@ import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 
-// Расширяем глобальный интерфейс Window
 declare global {
   interface Window {
     ym?: (id: number, method: string, ...args: unknown[]) => void;
   }
 }
 
-// Компонент отслеживания переходов
 function MetrikaTracking() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -25,7 +23,7 @@ function MetrikaTracking() {
       }
     };
 
-    const timer = setTimeout(handleHit, 100);
+    const timer = setTimeout(handleHit, 200);
     return () => clearTimeout(timer);
   }, [pathname, searchParams]);
 
@@ -47,6 +45,7 @@ export default function YandexMetrika() {
           (window, document, "script", "https://yandex.ru", "ym");
 
           ym(112113946, "init", {
+               defer: true,
                clickmap:true,
                trackLinks:true,
                accurateTrackBounce:true,
