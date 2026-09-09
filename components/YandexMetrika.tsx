@@ -17,7 +17,6 @@ function MetrikaTracking() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Небольшая задержка, чтобы Next.js успел полностью обновить DOM перед отправкой хита
     const handleHit = () => {
       if (typeof window !== 'undefined' && window.ym) {
         const queryString = searchParams.toString();
@@ -26,7 +25,6 @@ function MetrikaTracking() {
       }
     };
 
-    // Используем requestAnimationFrame или таймер, чтобы дать DOM обновиться
     const timer = setTimeout(handleHit, 100);
     return () => clearTimeout(timer);
   }, [pathname, searchParams]);
