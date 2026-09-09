@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import { locales } from '../../i18n';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import YandexMetrika from '@/components/YandexMetrika'
+import YandexMetrika from '../../components/YandexMetrika'
+
 
 // Важно: props теперь асинхронные
 export default async function LocaleLayout({
