@@ -1,17 +1,21 @@
 'use client';
 
+import Script from 'next/script';
+
 export default function YandexMetrika() {
   return (
     <>
-      {/* Прямое жесткое подключение тега скрипта без оптимизаций Next.js */}
-      <script
+      {/* Загрузка основного скрипта Метрики */}
+      <Script
         async
-        src="https://mc.yandex.ru/metrika/tag.js""
+        src="https://mc.yandex.ru/metrika/tag.js"
+        strategy="afterInteractive"
       />
       
-      {/* Прямая инициализация */}
-      <script
+      {/* Инициализация счетчика */}
+      <Script
         id="yandex-metrika-init"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.ym = window.ym || function() {
@@ -28,10 +32,11 @@ export default function YandexMetrika() {
           `,
         }}
       />
+      
       <noscript>
         <div>
           <img 
-            src="https://mc.yandex.ru/metrika/tag.js" 
+            src="https://yandex.ru" 
             style={{ position: 'absolute', left: '-9999px' }} 
             alt="" 
           />
