@@ -6,7 +6,7 @@ export default function YandexMetrika() {
       {/* Прямое жесткое подключение тега скрипта без оптимизаций Next.js */}
       <script
         async
-        src="https://yandex.ru"
+        src="https://mc.yandex.ru/metrika/tag.js""
       />
       
       {/* Прямая инициализация */}
@@ -31,7 +31,7 @@ export default function YandexMetrika() {
       <noscript>
         <div>
           <img 
-            src="https://yandex.ru" 
+            src="https://mc.yandex.ru/metrika/tag.js" 
             style={{ position: 'absolute', left: '-9999px' }} 
             alt="" 
           />
